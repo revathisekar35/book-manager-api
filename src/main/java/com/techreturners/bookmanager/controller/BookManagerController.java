@@ -32,6 +32,7 @@ public class BookManagerController {
     public ResponseEntity<Book> addBook(@RequestBody Book book) {
         Book newBook = bookManagerService.insertBook(book);
         HttpHeaders httpHeaders = new HttpHeaders();
+        System.out.println("newBook---"+newBook);
         httpHeaders.add("book", "/api/v1/book/" + newBook.getId().toString());
         return new ResponseEntity<>(newBook, httpHeaders, HttpStatus.CREATED);
     }
@@ -41,6 +42,12 @@ public class BookManagerController {
     public ResponseEntity<Book> updateBookById(@PathVariable("bookId") Long bookId, @RequestBody Book book) {
         bookManagerService.updateBookById(bookId, book);
         return new ResponseEntity<>(bookManagerService.getBookById(bookId), HttpStatus.OK);
+    }
+    
+    @DeleteMapping({"/{bookId}"})
+    public ResponseEntity<Book> deleteBookById(@PathVariable Long bookId) {
+    	bookManagerService.deleteBookById(bookId);
+    	return new ResponseEntity<>( HttpStatus.OK);
     }
 
 }
