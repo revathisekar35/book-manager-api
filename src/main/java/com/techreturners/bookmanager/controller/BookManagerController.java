@@ -44,7 +44,7 @@ public class BookManagerController {
 			System.out.println("newBook---" + newBook);
 			httpHeaders.add("book", "/api/v1/book/" + newBook.getId().toString());
 			return new ResponseEntity<>(newBook, httpHeaders, HttpStatus.CREATED);
-		} catch (HttpMessageNotReadableException e) {
+		} catch (Exception e) {
 			throw new ApiRequestException("Input Json is not valid");
 		}
 	}
