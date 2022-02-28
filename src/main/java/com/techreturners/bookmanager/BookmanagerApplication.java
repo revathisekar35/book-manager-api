@@ -22,7 +22,8 @@ public class BookmanagerApplication {
 	@Bean
 	public Docket swaggerDocumentation() {
 		return new Docket(DocumentationType.OAS_30).select().paths(PathSelectors.any())
-				.apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).build().apiInfo(apiInformation());
+				.apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).build()
+				.apiInfo(apiInformation());
 	}
 
 	private ApiInfo apiInformation() {
